@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  workflow_call:
+
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-go:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Setup cache
+        uses: Swatinem/rust-cache@v1
+
+      - name: Setup | Rust
+        uses: actions-rs/toolchain@v1.0.7
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Build rust project
+        run: |
+          cargo build --release --locked
