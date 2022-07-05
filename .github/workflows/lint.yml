@@ -64,8 +64,7 @@ jobs:
           default: true
           override: true
 
-      - name: Install cargo-make
-        run: cargo install --force cargo-make
+      - uses: davidB/rust-cargo-make@v1
 
       - name: Lint rust code
         run: cargo make lint
@@ -83,8 +82,7 @@ jobs:
           default: true
           override: true
 
-      - name: Install cargo-make
-        run: cargo install --force cargo-make
+      - uses: davidB/rust-cargo-make@v1
 
       - name: Check rust format
         run: cargo make check-format
