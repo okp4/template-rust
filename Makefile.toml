@@ -8,7 +8,7 @@ install_crate = {rustup_component_name = "rustfmt"}
 args = ["fmt", "--all", "--", "--check"]
 command = "cargo"
 description = "Check format of sources files."
-install_crate = "rustfmt"
+install_crate = {rustup_component_name = "rustfmt"}
 
 [tasks.lint-rust]
 args = ["clippy", "--workspace", "--locked", "--all-targets", "--all-features", "--", "-D", "clippy::all", "-D", "warnings"]
