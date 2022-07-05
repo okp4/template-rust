@@ -89,16 +89,21 @@ jobs:
             Cargo.toml
 
       - name: Setup rust
+        if: steps.changed-rust-files.outputs.any_changed == 'true'
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
           default: true
           override: true
 
-      - uses: davidB/rust-cargo-make@v1
+      - name: Install cargo
+        if: steps.changed-rust-files.outputs.any_changed == 'true'
+        uses: davidB/rust-cargo-make@v1
 
       - name: Lint rust code
-        run: cargo make lint-rust
+        if: steps.changed-rust-files.outputs.any_changed == 'true'
+        run: |
+          cargo make lint-rust
 
   lint-rust-format:
     runs-on: ubuntu-20.04
@@ -113,10 +118,12 @@ jobs:
           default: true
           override: true
 
-      - uses: davidB/rust-cargo-make@v1
+      - name: Install cargo
+        uses: davidB/rust-cargo-make@v1
 
       - name: Check rust format
-        run: cargo make lint-rust-format
+        run: |
+          cargo make lint-rust-format
 
   lint-branch-name:
     runs-on: ubuntu-20.04
