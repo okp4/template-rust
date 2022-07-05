@@ -42,6 +42,90 @@ jobs:
       - name: Lint yaml files
         uses: ibiqlik/action-yamllint@v3.1.0
 
+  lint-cargo-toml:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Find changed rust files
+        id: changed-rust-cargo
+        uses: tj-actions/changed-files@v23
+        with:
+          files: |
+            Cargo.toml
+
+      - name: Setup rust
+        if: steps.changed-rust-cargo.outputs.any_changed == 'true'
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          default: true
+          override: true
+
+      - name: Install cargo-toml-lint
+        if: steps.changed-rust-cargo.outputs.any_changed == 'true'
+        run: |
+          cargo install --force cargo-toml-lint
+
+      - name: Lint toml files
+        if: steps.changed-rust-cargo.outputs.any_changed == 'true'
+        run: |
+          cargo-toml-lint Cargo.toml
+
+  lint-rust:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Find changed rust files
+        id: changed-rust-files
+        uses: tj-actions/changed-files@v23
+        with:
+          files: |
+            **/*.rs
+            Cargo.lock
+            Cargo.toml
+
+      - name: Setup rust
+        if: steps.changed-rust-files.outputs.any_changed == 'true'
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          default: true
+          override: true
+
+      - name: Install cargo make
+        if: steps.changed-rust-files.outputs.any_changed == 'true'
+        uses: davidB/rust-cargo-make@v1
+
+      - name: Lint rust code
+        if: steps.changed-rust-files.outputs.any_changed == 'true'
+        run: |
+          cargo make lint-rust
+
+  lint-rust-format:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Setup rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          default: true
+          override: true
+
+      - name: Install cargo make
+        uses: davidB/rust-cargo-make@v1
+
+      - name: Check rust format
+        run: |
+          cargo make lint-rust-format
+
   lint-branch-name:
     runs-on: ubuntu-20.04
     if: github.actor != 'dependabot[bot]' && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')

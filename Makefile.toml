@@ -1,0 +1,36 @@
+[tasks.format]
+args = ["fmt"]
+command = "cargo"
+description = "Format sources files."
+install_crate = {rustup_component_name = "rustfmt"}
+
+[tasks.lint-rust-format]
+args = ["fmt", "--all", "--", "--check"]
+command = "cargo"
+description = "Check format of sources files."
+install_crate = {rustup_component_name = "rustfmt"}
+
+[tasks.lint-rust]
+args = ["clippy", "--workspace", "--locked", "--all-targets", "--all-features", "--", "-D", "clippy::all", "-D", "warnings"]
+command = "cargo"
+description = "Check lint of all sources files."
+install_crate = {rustup_component_name = "clippy"}
+
+[tasks.lint]
+dependencies = [
+  "lint-rust-format",
+  "lint-rust",
+]
+
+[tasks.clean]
+args = ["clean"]
+command = "cargo"
+
+[tasks.build]
+args = ["build", "--release", "--locked"]
+command = "cargo"
+
+[tasks.test]
+args = ["test", "--tests", "--workspace", "--locked", "--all-features"]
+command = "cargo"
+description = "Run all unit tests."
