@@ -96,7 +96,7 @@ jobs:
           default: true
           override: true
 
-      - name: Install cargo
+      - name: Install cargo make
         if: steps.changed-rust-files.outputs.any_changed == 'true'
         uses: davidB/rust-cargo-make@v1
 
@@ -118,7 +118,7 @@ jobs:
           default: true
           override: true
 
-      - name: Install cargo
+      - name: Install cargo make
         uses: davidB/rust-cargo-make@v1
 
       - name: Check rust format

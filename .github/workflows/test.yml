@@ -30,7 +30,8 @@ jobs:
           default: true
           override: true
 
-      - uses: davidB/rust-cargo-make@v1
+      - name: Install cargo make
+        uses: davidB/rust-cargo-make@v1
 
       - name: Test rust code
         run: cargo make test
