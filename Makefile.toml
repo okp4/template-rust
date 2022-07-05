@@ -45,6 +45,7 @@ env = { LLVM_PROFILE_FILE = "default.profraw", RUST_BACKTRACE = 1 }
 install_crate = { rustup_component_name = "llvm-tools-preview" }
 
 [tasks.test-coverage]
+install_crate = { crate_name = "grcov" }
 dependencies = ["test"]
 script = '''
 grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore "*cargo*" -o coverage.lcov
