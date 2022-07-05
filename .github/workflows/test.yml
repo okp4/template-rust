@@ -34,4 +34,7 @@ jobs:
         uses: davidB/rust-cargo-make@v1
 
       - name: Test rust code
-        run: cargo make test
+        run: cargo make test-coverage
+        
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
