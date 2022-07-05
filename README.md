@@ -21,6 +21,17 @@ This way, the template promotes:
 - formatting via [rustfmt](https://github.com/rust-lang/rustfmt)
 - a uniform way of building via [cargo-make](https://github.com/sagiegurari/cargo-make)
 
+## How to use
+
+> 🚨 do not fork this repository as it is a [template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+
+1. Click on [Use this template](https://github.com/okp4/template-rust/generate)
+2. Give a name to your project
+3. Wait until the first run of CI finishes
+4. Clone your new project and happy coding!
+
+⚠ Do not forget to adapt your project to your needs by editing the `Cargo.toml` file.
+
 ## Prerequisites
 
 Be sure you have [Rust](https://www.rust-lang.org/tools/install) properly installed with [cargo-make](https://github.com/sagiegurari/cargo-make).
