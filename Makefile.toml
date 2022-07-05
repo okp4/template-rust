@@ -16,6 +16,12 @@ command = "cargo"
 description = "Check lint of all sources files."
 install_crate = {rustup_component_name = "clippy"}
 
+[tasks.lint]
+dependencies = [
+  "lint-rust-format",
+  "lint-rust",
+]
+
 [tasks.clean]
 args = ["clean"]
 command = "cargo"
