@@ -76,9 +76,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Setup cache
-        uses: Swatinem/rust-cache@v1
-
       - name: Setup rust
         uses: actions-rs/toolchain@v1
         with:
