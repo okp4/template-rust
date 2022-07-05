@@ -23,13 +23,15 @@ jobs:
       - name: Setup cache
         uses: Swatinem/rust-cache@v1
 
-      - name: Setup | Rust
-        uses: actions-rs/toolchain@v1.0.7
+      - name: Setup rust
+        uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
-          profile: minimal
+          toolchain: nightly
+          default: true
           override: true
 
-      - name: Build rust project
-        run: |
-          cargo build --release --locked
+        - name: Install cargo-make
+          run: cargo install --force cargo-make
+
+        - name: Build rust
+          run: cargo make build
