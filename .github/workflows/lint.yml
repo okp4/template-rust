@@ -67,7 +67,7 @@ jobs:
       - uses: davidB/rust-cargo-make@v1
 
       - name: Lint rust code
-        run: cargo make lint
+        run: cargo make lint-rust
 
   lint-rust-format:
     runs-on: ubuntu-20.04
@@ -85,7 +85,7 @@ jobs:
       - uses: davidB/rust-cargo-make@v1
 
       - name: Check rust format
-        run: cargo make check-format
+        run: cargo make lint-rust-format
 
   lint-branch-name:
     runs-on: ubuntu-20.04
