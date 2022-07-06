@@ -1,26 +1,49 @@
-[tasks.format]
+[tasks.format-rust]
 args = ["fmt"]
 command = "cargo"
-description = "Format sources files."
-install_crate = {rustup_component_name = "rustfmt"}
+description = "Format rust sources files."
+install_crate = { rustup_component_name = "rustfmt" }
 
 [tasks.lint-rust-format]
 args = ["fmt", "--all", "--", "--check"]
 command = "cargo"
 description = "Check format of sources files."
-install_crate = {rustup_component_name = "rustfmt"}
+install_crate = { rustup_component_name = "rustfmt" }
 
 [tasks.lint-rust]
-args = ["clippy", "--workspace", "--locked", "--all-targets", "--all-features", "--", "-D", "clippy::all", "-D", "warnings"]
+args = [
+  "clippy",
+  "--workspace",
+  "--locked",
+  "--all-targets",
+  "--all-features",
+  "--",
+  "-D",
+  "clippy::all",
+  "-D",
+  "warnings",
+]
 command = "cargo"
 description = "Check lint of all sources files."
-install_crate = {rustup_component_name = "clippy"}
+install_crate = { rustup_component_name = "clippy" }
+
+[tasks.lint-toml]
+args = ["lint", "*.toml"]
+command = "taplo"
+description = "Check lint of all toml files."
+install_crate = { crate_name = "taplo-cli" }
+
+[tasks.format-toml]
+args = ["lint", "*.toml"]
+command = "taplo"
+description = "Format toml file"
+install_crate = { crate_name = "taplo-cli" }
 
 [tasks.lint]
-dependencies = [
-  "lint-rust-format",
-  "lint-rust",
-]
+dependencies = ["lint-rust-format", "lint-rust"]
+
+[tasks.format]
+dependencies = ["format-rust", "format-toml"]
 
 [tasks.clean]
 args = ["clean"]
@@ -50,7 +73,3 @@ dependencies = ["test"]
 script = '''
 grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore "*cargo*" -o coverage.lcov
 '''
-
-
-
-
