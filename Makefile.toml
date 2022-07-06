@@ -28,13 +28,13 @@ description = "Check lint of all sources files."
 install_crate = { rustup_component_name = "clippy" }
 
 [tasks.lint-toml]
-install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
+args = ["lint"]
 command = "taplo"
 description = "Check lint of all toml files."
-args = ["lint", "*.toml"]
+install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 
 [tasks.format-toml]
-args = ["lint", "*.toml"]
+args = ["fmt"]
 command = "taplo"
 description = "Format toml file"
 install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
@@ -54,22 +54,22 @@ args = ["build", "--release", "--locked"]
 command = "cargo"
 
 [tasks.build-coverage]
+args = ["build"]
+command = "cargo"
 description = "Compile the source code and create testable artifacts."
 env = { RUSTFLAGS = "-Cinstrument-coverage" }
-command = "cargo"
-args = ["build"]
 
 [tasks.test]
 args = ["test", "--tests", "--workspace", "--locked", "--all-features"]
 command = "cargo"
-description = "Run all unit tests."
 dependencies = ["build-coverage"]
+description = "Run all unit tests."
 env = { LLVM_PROFILE_FILE = "default.profraw", RUST_BACKTRACE = 1 }
 install_crate = { rustup_component_name = "llvm-tools-preview" }
 
 [tasks.test-coverage]
-install_crate = { crate_name = "grcov" }
 dependencies = ["test"]
+install_crate = { crate_name = "grcov" }
 script = '''
 grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore "*cargo*" -o coverage.lcov
 '''
