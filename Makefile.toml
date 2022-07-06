@@ -28,19 +28,19 @@ description = "Check lint of all sources files."
 install_crate = { rustup_component_name = "clippy" }
 
 [tasks.lint-toml]
-args = ["lint", "*.toml"]
+install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 command = "taplo"
 description = "Check lint of all toml files."
-install_crate = { crate_name = "taplo-cli" }
+args = ["lint", "*.toml"]
 
 [tasks.format-toml]
 args = ["lint", "*.toml"]
 command = "taplo"
 description = "Format toml file"
-install_crate = { crate_name = "taplo-cli" }
+install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 
 [tasks.lint]
-dependencies = ["lint-rust-format", "lint-rust"]
+dependencies = ["lint-rust-format", "lint-rust", "lint-toml"]
 
 [tasks.format]
 dependencies = ["format-rust", "format-toml"]
