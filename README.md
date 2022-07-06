@@ -2,13 +2,13 @@
 
 > Template for Rust projects @okp4.
 
-[![version](https://img.shields.io/github/v/release/okp4/template-rust)](https://github.com/okp4/template-rust/releases)
-[![build](https://github.com/okp4/template-rust/actions/workflows/build.yml/badge.svg)](https://github.com/okp4/template-rust/actions/workflows/build.yml)
-[![lint](https://github.com/okp4/template-rust/actions/workflows/lint.yml/badge.svg)](https://github.com/okp4/template-rust/actions/workflows/lint.yml)
-[![test](https://github.com/okp4/template-rust/actions/workflows/test.yml/badge.svg)](https://github.com/okp4/template-rust/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/okp4/template-rust/branch/main/graph/badge.svg?token=K5CYM8TQQY)](https://codecov.io/gh/okp4/template-rust)
-[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![version](https://img.shields.io/github/v/release/okp4/template-rust?style=for-the-badge)](https://github.com/okp4/template-rust/releases)
+[![build](https://img.shields.io/github/workflow/status/okp4/template-rust/Build?label=build&style=for-the-badge)](https://github.com/okp4/template-rust/actions/workflows/build.yml)
+[![lint](https://img.shields.io/github/workflow/status/okp4/template-rust/Lint?label=lint&style=for-the-badge)](https://github.com/okp4/template-rust/actions/workflows/lint.yml)
+[![test](https://img.shields.io/github/workflow/status/okp4/template-rust/Test?label=test&style=for-the-badge)](https://github.com/okp4/template-rust/actions/workflows/test.yml)
+[![codecov](https://img.shields.io/codecov/c/github/okp4/template-rust?style=for-the-badge&token=K5CYM8TQQY)](https://codecov.io/gh/okp4/template-rust)
+[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg?style=for-the-badge)](https://opensource.org/licenses/BSD-3-Clause)
 
 ## Purpose & Philosophy
 
