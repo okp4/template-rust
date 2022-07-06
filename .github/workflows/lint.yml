@@ -132,6 +132,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
+      - name: Cache cargo registry
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.cargo/bin
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Setup rust
         uses: actions-rs/toolchain@v1
         with:
