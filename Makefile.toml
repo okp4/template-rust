@@ -30,7 +30,27 @@ command = "cargo"
 args = ["build", "--release", "--locked"]
 command = "cargo"
 
+[tasks.build-coverage]
+description = "Compile the source code and create testable artifacts."
+env = { RUSTFLAGS = "-Cinstrument-coverage" }
+command = "cargo"
+args = ["build"]
+
 [tasks.test]
 args = ["test", "--tests", "--workspace", "--locked", "--all-features"]
 command = "cargo"
 description = "Run all unit tests."
+dependencies = ["build-coverage"]
+env = { LLVM_PROFILE_FILE = "default.profraw", RUST_BACKTRACE = 1 }
+install_crate = { rustup_component_name = "llvm-tools-preview" }
+
+[tasks.test-coverage]
+install_crate = { crate_name = "grcov" }
+dependencies = ["test"]
+script = '''
+grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore "*cargo*" -o coverage.lcov
+'''
+
+
+
+
