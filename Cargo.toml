@@ -1,9 +1,7 @@
 [package]
-authors = ["OKP4.com"]
+authors = ["OKP4"]
 description = "A template project for Rust."
-documentation = "https://github.com/okp4/template-rust/blob/master/README.md"
 edition = "2021"
-homepage = "https://github.com/okp4/template-rust"
 license-file = "LICENSE"
 name = "template-rust"
 readme = "README.md"
