@@ -8,16 +8,16 @@ plugins:
     - changelogFile: CHANGELOG.md
       changelogTitle: "# ØKP4 template-rust"
   - - '@google/semantic-release-replace-plugin'
-      - replacements:
-          - files: [ Cargo.toml ]
-            from: ^version = ".+"
-            to: version = "${nextRelease.version}"
-            countMatches: true
-            results:
-              - file: Cargo.toml
-                hasChanged: true
-                numMatches: 1
-                numReplacements: 1
+    - replacements:
+        - files: [ Cargo.toml ]
+          from: ^version = ".+"
+          to: version = "${nextRelease.version}"
+          countMatches: true
+          results:
+            - file: Cargo.toml
+              hasChanged: true
+              numMatches: 1
+              numReplacements: 1
   - - "@semantic-release/exec"
     - prepareCmd: |
         cargo make build
