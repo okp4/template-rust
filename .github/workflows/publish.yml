@@ -20,10 +20,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Set up context
-        id: project_context
-        uses: FranzDiebold/github-env-vars-action@v2.3.1
-
       - name: Setup rust
         uses: actions-rs/toolchain@v1
         with:
