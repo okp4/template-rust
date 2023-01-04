@@ -13,11 +13,11 @@
 
 ## Purpose & Philosophy
 
-This repository holds the template for building Rust projects with a consistent set of standards accross all [OKP4](https://github.com/okp4) projects. We are convinced that the quality of the code depends on clear and consistent coding conventions, with an automated enforcement (CI).
+This repository holds the template for building Rust projects with a consistent set of standards across all [OKP4](https://github.com/okp4) projects. We are convinced that the quality of the code depends on clear and consistent coding conventions, with an automated enforcement (CI).
 
 This way, the template promotes:
 
-- the use of [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), [semantic versionning](https://semver.org/) and [semantic releasing](https://github.com/cycjimmy/semantic-release-action) which automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the artifacts (project tarball, docker images, etc.)
+- the use of [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), [semantic versioning](https://semver.org/) and [semantic releasing](https://github.com/cycjimmy/semantic-release-action) which automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the artifacts (project tarball, docker images, etc.)
 - unit testing
 - linting via [rust-clippy](https://github.com/rust-lang/rust-clippy)
 - formatting via [rustfmt](https://github.com/rust-lang/rustfmt)
