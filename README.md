@@ -3,9 +3,9 @@
 > Template for Rust projects @okp4.
 
 [![version](https://img.shields.io/github/v/release/okp4/template-rust?style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/releases)
-[![build](https://img.shields.io/github/workflow/status/okp4/template-rust/Build?label=build&style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/actions/workflows/build.yml)
-[![lint](https://img.shields.io/github/workflow/status/okp4/template-rust/Lint?label=lint&style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/actions/workflows/lint.yml)
-[![test](https://img.shields.io/github/workflow/status/okp4/template-rust/Test?label=test&style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/actions/workflows/test.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/okp4/template-rust/build.yml?branch=main&label=build&style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/actions/workflows/build.yml)
+[![lint](https://img.shields.io/github/actions/workflow/status/okp4/template-rust/lint.yml?branch=main&label=lint&style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/actions/workflows/lint.yml)
+[![test](https://img.shields.io/github/actions/workflow/status/okp4/template-rust/test.yml?branch=main&label=test&style=for-the-badge&logo=github)](https://github.com/okp4/template-rust/actions/workflows/test.yml)
 [![codecov](https://img.shields.io/codecov/c/github/okp4/template-rust?style=for-the-badge&token=K5CYM8TQQY&logo=codecov)](https://codecov.io/gh/okp4/template-rust)
 [![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge&logo=conventionalcommits)](https://conventionalcommits.org)
 [![contributor covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=for-the-badge)](https://github.com/okp4/.github/blob/main/CODE_OF_CONDUCT.md)
