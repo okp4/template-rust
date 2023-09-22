@@ -19,20 +19,20 @@ description = "Check lint of all sources files."
 [tasks.lint-toml]
 args = ["lint"]
 command = "taplo"
+dependencies = ["install-taplo-cli"]
 description = "Check lint of all toml files."
-install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 
 [tasks.lint-cargo-toml]
 args = ["Cargo.toml"]
 command = "cargo-toml-lint"
+dependencies = ["install-cargo-toml-lint"]
 description = "Check lint of cargo toml files."
-install_crate = { crate_name = "cargo-toml-lint", binary = "cargo-toml-lint", test_arg = "--help" }
 
 [tasks.format-toml]
 args = ["fmt"]
 command = "taplo"
+dependencies = ["install-taplo-cli"]
 description = "Format toml file"
-install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 
 [tasks.lint]
 dependencies = ["lint-rust-format", "lint-rust", "lint-toml", "lint-cargo-toml"]
@@ -78,6 +78,12 @@ install_crate = { rustup_component_name = "clippy", min_version = "0.1.72" }
 [tasks.intall-cranky]
 dependencies = ["install-clippy"]
 install_crate = { crate_name = "cargo-cranky", min_version = "0.3.0" }
+
+[tasks.install-taplo-cli]
+install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help", min_version = "0.8.1" }
+
+[tasks.install-cargo-toml-lint]
+install_crate = { crate_name = "cargo-toml-lint", binary = "cargo-toml-lint", test_arg = "--help", min_version = "0.1.1" }
 
 [tasks.publish]
 args = ["publish", "--token", "${CARGO_API_TOKEN}"]
