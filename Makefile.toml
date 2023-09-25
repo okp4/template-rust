@@ -11,39 +11,28 @@ description = "Check format of sources files."
 install_crate = { rustup_component_name = "rustfmt" }
 
 [tasks.lint-rust]
-args = [
-  "clippy",
-  "--workspace",
-  "--locked",
-  "--all-targets",
-  "--all-features",
-  "--",
-  "-D",
-  "clippy::all",
-  "-D",
-  "warnings",
-]
+args = ["cranky"]
 command = "cargo"
+dependencies = ["install-clippy"]
 description = "Check lint of all sources files."
-install_crate = { rustup_component_name = "clippy" }
 
 [tasks.lint-toml]
 args = ["lint"]
 command = "taplo"
+dependencies = ["install-taplo-cli"]
 description = "Check lint of all toml files."
-install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 
 [tasks.lint-cargo-toml]
 args = ["Cargo.toml"]
 command = "cargo-toml-lint"
+dependencies = ["install-cargo-toml-lint"]
 description = "Check lint of cargo toml files."
-install_crate = { crate_name = "cargo-toml-lint", binary = "cargo-toml-lint", test_arg = "--help" }
 
 [tasks.format-toml]
 args = ["fmt"]
 command = "taplo"
+dependencies = ["install-taplo-cli"]
 description = "Format toml file"
-install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help" }
 
 [tasks.lint]
 dependencies = ["lint-rust-format", "lint-rust", "lint-toml", "lint-cargo-toml"]
@@ -73,17 +62,35 @@ description = "Run all unit tests."
 env = { LLVM_PROFILE_FILE = "default_%p.profraw", RUST_BACKTRACE = 1, RUSTFLAGS = "-Cinstrument-coverage" }
 
 [tasks.test-coverage]
-dependencies = ["test", "install-grcov"]
-script = '''
-grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore "*cargo*" -o coverage.lcov
-'''
+args = ["llvm-cov", "--workspace", "--lcov", "--output-path", "lcov.info"]
+command = "cargo"
+dependencies = ["install-llvm-tools-preview", "install-llvm-cov"]
 
 [tasks.install-llvm-tools-preview]
 install_crate = { rustup_component_name = "llvm-tools-preview" }
 
-[tasks.install-grcov]
-install_crate = { crate_name = "grcov" }
+[tasks.install-llvm-cov]
+install_crate = { crate_name = "cargo-llvm-cov", min_version = "0.5.31" }
+
+[tasks.install-clippy]
+install_crate = { rustup_component_name = "clippy", min_version = "0.1.72" }
+
+[tasks.intall-cranky]
+dependencies = ["install-clippy"]
+install_crate = { crate_name = "cargo-cranky", min_version = "0.3.0" }
+
+[tasks.install-taplo-cli]
+install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = "--help", min_version = "0.8.1" }
+
+[tasks.install-cargo-toml-lint]
+install_crate = { crate_name = "cargo-toml-lint", binary = "cargo-toml-lint", test_arg = "--help", min_version = "0.1.1" }
 
 [tasks.publish]
 args = ["publish", "--token", "${CARGO_API_TOKEN}"]
 command = "cargo"
+
+[config]
+min_version = "0.36.13"
+
+[env]
+CARGO_MAKE_CRATE_INSTALLATION_LOCKED = true
